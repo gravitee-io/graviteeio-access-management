@@ -290,6 +290,7 @@ workflows:
           filters:
             branches:
               only:
+                - feature/3.5.x
                 - master
                 - /^(\d|[1-9]\d*)\.(\d|[1-9]\d*)\.x$/
       - deploy-on-aks:
