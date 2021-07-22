@@ -18,6 +18,7 @@ FROM nginx:1.18-alpine
 LABEL maintainer="contact@graviteesource.com"
 
 ARG GRAVITEEAM_VERSION=0
+ARG GRAVITEEIO_DOWNLOAD_URL=https://download.gravitee.io/graviteeio-am/components/gravitee-am-webui
 
 ENV CONFD_VERSION="0.16.0"
 ENV CONFD_URL="https://github.com/kelseyhightower/confd/releases/download"
@@ -27,7 +28,7 @@ RUN apk --update add zip unzip bash wget
 
 ENV WWW_TARGET /usr/share/nginx/html
 
-RUN wget --no-check-certificate -O /tmp/gravitee-am-webui-${GRAVITEEAM_VERSION}.zip https://download.gravitee.io/graviteeio-am/components/gravitee-am-webui/gravitee-am-webui-${GRAVITEEAM_VERSION}.zip \
+RUN wget --no-check-certificate -O /tmp/gravitee-am-webui-${GRAVITEEAM_VERSION}.zip $GRAVITEEIO_DOWNLOAD_URL/gravitee-am-webui-${GRAVITEEAM_VERSION}.zip \
     && unzip /tmp/gravitee-am-webui-${GRAVITEEAM_VERSION}.zip -d /tmp/ \
     && mkdir -p ${WWW_TARGET} \
     && mv /tmp/gravitee-am-webui-${GRAVITEEAM_VERSION}/* ${WWW_TARGET} \
